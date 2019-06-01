@@ -4,13 +4,13 @@ public class RegisteredCustomer extends Customer {
 
     private int id;
     private String email;
-    private String pass;
+    private String password;
 
-    public RegisteredCustomer(String email, String pass, String name, String phoneNumber, String address) {
-        super(name, phoneNumber, address);
+    public RegisteredCustomer(String email, String password, String firstName, String lastName, String phoneNumber, String address) {
+        super(firstName, lastName, phoneNumber, address);
         this.id = generateId();
         this.email = email;
-        this.pass = pass;
+        this.password = password;
     }
 
     public int getId() {
@@ -25,17 +25,12 @@ public class RegisteredCustomer extends Customer {
         this.email = email;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    @Override
-    public void getMenu() {
-        System.out.println("----- Menu -----");
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     private int generateId() {
@@ -62,5 +57,28 @@ public class RegisteredCustomer extends Customer {
 
         // in case something goes wrong
         return -1;
+    }
+
+    @Override
+    public void getMenu() {
+        System.out.println("----- Menu -----");
+    }
+
+    public static RegisteredCustomer login(String email, String password) {
+
+        // get customer list
+        ArrayList<Customer> customers = Customer.getCustomers();
+
+        // loop through customer list
+        for (Customer customer : customers) {
+            if (customer instanceof RegisteredCustomer) {
+                if (((RegisteredCustomer) customer).getEmail().equals(email))
+                    if (((RegisteredCustomer) customer).getPassword().equals(password))
+                        return (RegisteredCustomer) customer;
+            }
+        }
+
+        // no customer found with this email & password
+        return null;
     }
 }

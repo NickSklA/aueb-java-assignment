@@ -2,24 +2,34 @@ import java.util.ArrayList;
 
 public abstract class Customer {
 
-    private String name;
+    private String firstName;
+    private String lastName;
     private String phoneNumber;
     private String address;
     private static ArrayList<Customer> customers = new ArrayList<Customer>();
 
-    public Customer(String name, String phoneNumber, String address) {
-        this.name = name;
+    public Customer(String firstName, String lastName, String phoneNumber, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         customers.add(this);
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhoneNumber() {
