@@ -18,9 +18,15 @@ public class Main {
 //        RegisteredCustomer customer3 = new RegisteredCustomer("nids3@gmail.com", "121243", "nisdfk", "skl","694227sdf7574", "leva");
 //        System.out.println(customer3.getId());
 
+        Shop shop1 = new Shop("Name1", "Levade 38", "6942277574", new ArrayList<Product>());
+        Shop shop2 = new Shop("Name2", "Kakou 4", "2323556345", new ArrayList<Product>());
+        Shop shop3 = new Shop("Name3", "Petroup 29", "234677867", new ArrayList<Product>());
+
+        Shop.printAllShops();
+
 
         // print connection menu
-        printMenu();
+//        printMenu();
     }
 
     private static void printMenu() {
@@ -98,6 +104,10 @@ public class Main {
             else {
                 System.out.print("You logged in successfully! Press enter to continue.");
                 String enter = scanner.nextLine();
+
+                // call registered menu
+                customer.getMenu();
+
                 return;
             }
         }
@@ -142,9 +152,9 @@ public class Main {
         products.add(product);
         products.add(product2);
         products.add(product3);
-
-        Shop shop = new Shop(1, "Name", "Address", products);
-        Shop shop2 = new Shop(2, "Name2", "Address2", products);
+//
+//        Shop shop = new Shop(1, "Name", "Address", products);
+//        Shop shop2 = new Shop(2, "Name2", "Address2", products);
 
 
         Shop.printAllShops();

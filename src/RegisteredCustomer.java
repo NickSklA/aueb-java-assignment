@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class RegisteredCustomer extends Customer {
 
@@ -59,11 +60,6 @@ public class RegisteredCustomer extends Customer {
         return -1;
     }
 
-    @Override
-    public void getMenu() {
-        System.out.println("----- Menu -----");
-    }
-
     public static RegisteredCustomer login(String email, String password) {
 
         // get customer list
@@ -80,5 +76,45 @@ public class RegisteredCustomer extends Customer {
 
         // no customer found with this email & password
         return null;
+    }
+
+    @Override
+    public void getMenu() {
+
+        // create a scanner object
+        Scanner scanner = new Scanner(System.in);
+
+        // welcome message
+        System.out.println("Welcome " + getFirstName() + " " + getLastName());
+
+        // print the menu
+        System.out.println("===== Registered Menu =====");
+        System.out.println("1. Coming soon");
+        System.out.println("2. Show available shops");
+        System.out.println("3. Coming soon");
+
+        String option = "";
+        while (true) {
+            // read user input
+            System.out.print("Select an option [1-3]: ");
+            option = scanner.nextLine();
+
+            // if user gives valid input continue
+            if (option.equals("1") || option.equals("2") || option.equals("3"))
+                break;
+        }
+
+        switch (option) {
+            case "1":
+                break;
+            case "2":
+                showAvailableShops();
+                break;
+            case "3":
+        }
+    }
+
+    private void showAvailableShops() {
+
     }
 }

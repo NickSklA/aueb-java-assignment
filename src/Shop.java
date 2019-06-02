@@ -5,13 +5,17 @@ public class Shop {
     private int id;
     private String name;
     private String address;
+    private String phoneNumber;
     private ArrayList<Product> products;
+    private static ArrayList<Shop> shops = new ArrayList<>();
 
-    public Shop(int id, String name, String address, ArrayList<Product> products) {
-        this.id = id;
+    public Shop(String name, String address, String phoneNumber, ArrayList<Product> products) {
+        this.id = generateId();
         this.name = name;
         this.address = address;
+        this.phoneNumber = phoneNumber;
         this.products = products;
+        shops.add(this);
     }
 
     public int getId() {
@@ -38,6 +42,14 @@ public class Shop {
         this.address = address;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public ArrayList<Product> getProducts() {
         return products;
     }
@@ -46,21 +58,36 @@ public class Shop {
         this.products = products;
     }
 
+    private int generateId() {
+
+        // if there are no shops
+        // give id: 1
+        if (shops.size() == 0) {
+            return 1;
+        }
+        else {
+            // find last shop's id
+            int lastId = shops.get(shops.size()-1).getId();
+            return lastId + 1;
+        }
+    }
+
     public static void printAllShops() {
-        System.out.println();
+
+        String leftAlignFormat = "| %-3d | %-8s | %-10s | %-11s |%n";
+
+        System.out.format("+-----+----------+------------+-------------+%n");
+        System.out.format("| ID  | Name     | Address    | Phone No.   |%n");
+        System.out.format("+-----+----------+------------+-------------+%n");
+
+        for (Shop shop : shops) {
+            System.out.format(leftAlignFormat, shop.getId(), shop.getName(), shop.getAddress(), shop.getPhoneNumber());
+        }
+
+        System.out.format("+-----+----------+------------+-------------+%n");
     }
 
     public static void filterAndPrintShops(String param) {
 
-    }
-
-    @Override
-    public String toString() {
-        return "Shop{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", products=" + products +
-                '}';
     }
 }
