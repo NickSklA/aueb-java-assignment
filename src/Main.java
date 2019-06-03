@@ -68,7 +68,8 @@ public class Main {
     }
 
     private static void printVisitorMenu() {
-
+        VisitorCustomer customer = new VisitorCustomer();
+        customer.getMenu();
     }
 
     private static void printLoginDialog() {

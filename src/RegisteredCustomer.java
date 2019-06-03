@@ -139,6 +139,5 @@ public class RegisteredCustomer extends Customer {
                 break;
             }
         }
-
     }
 }

@@ -8,6 +8,9 @@ public abstract class Customer {
     private String address;
     private static ArrayList<Customer> customers = new ArrayList<Customer>();
 
+    public Customer() {
+    }
+
     public Customer(String firstName, String lastName, String phoneNumber, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
