@@ -22,11 +22,11 @@ public class Main {
         Shop shop2 = new Shop("Name2", "Kakou 4", "2323556345", new ArrayList<Product>());
         Shop shop3 = new Shop("Name3", "Petroup 29", "234677867", new ArrayList<Product>());
 
-        Shop.printAllShops();
+//        Shop.filterAndPrintShops("nam");
 
 
         // print connection menu
-//        printMenu();
+        printMenu();
     }
 
     private static void printMenu() {
@@ -77,7 +77,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.print("===== Login ===== \n");
+            System.out.print("\n===== Login ===== \n");
             System.out.print("Email: ");
             String email = scanner.nextLine();
             System.out.print("Password: ");
@@ -102,7 +102,7 @@ public class Main {
                 }
             }
             else {
-                System.out.print("You logged in successfully! Press enter to continue.");
+                System.out.print("You logged in successfully! Press enter to continue.\n");
                 String enter = scanner.nextLine();
 
                 // call registered menu
@@ -118,7 +118,7 @@ public class Main {
         // create a scanner object
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("===== Sign Up ===== \n");
+        System.out.print("\n===== Sign Up ===== \n");
         System.out.print("First Name: ");
         String firstName = scanner.nextLine();
         System.out.print("Last Name: ");

@@ -87,34 +87,58 @@ public class RegisteredCustomer extends Customer {
         // welcome message
         System.out.println("Welcome " + getFirstName() + " " + getLastName());
 
-        // print the menu
-        System.out.println("===== Registered Menu =====");
-        System.out.println("1. Coming soon");
-        System.out.println("2. Show available shops");
-        System.out.println("3. Coming soon");
-
-        String option = "";
         while (true) {
-            // read user input
-            System.out.print("Select an option [1-3]: ");
-            option = scanner.nextLine();
 
-            // if user gives valid input continue
-            if (option.equals("1") || option.equals("2") || option.equals("3"))
-                break;
-        }
+            // print the menu
+            System.out.println("===== Registered Menu =====");
+            System.out.println("1. Coming soon");
+            System.out.println("2. Show available shops");
+            System.out.println("3. Coming soon \n");
 
-        switch (option) {
-            case "1":
-                break;
-            case "2":
-                showAvailableShops();
-                break;
-            case "3":
+            String option = "";
+            while (true) {
+                // read user input
+                System.out.print("Select an option [1-3]: ");
+                option = scanner.nextLine();
+
+                // if user gives valid input continue
+                if (option.equals("1") || option.equals("2") || option.equals("3"))
+                    break;
+            }
+
+            switch (option) {
+                case "1":
+                    break;
+                case "2":
+                    showAvailableShops();
+                    break;
+                case "3":
+            }
         }
     }
 
     private void showAvailableShops() {
+
+        // create a scanner object
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println();
+        System.out.print("Search shop by name: ");
+
+        String searchName = scanner.nextLine();
+        while (searchName != null) {
+
+            // given no name
+            if (searchName.isEmpty()) {
+                Shop.printAllShops();
+                return;
+            }
+            else {
+                // given name
+                Shop.filterAndPrintShops(searchName);
+                break;
+            }
+        }
 
     }
 }
