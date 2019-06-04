@@ -72,6 +72,53 @@ public class Shop {
         }
     }
 
+    public boolean productIdExists(int productId) {
+        for (Product product : products) {
+            if (product.getId() == productId)
+                return true;
+        }
+        return false;
+    }
+
+    public String printProductName(int productId) {
+        for (Product product : products) {
+            if (product.getId() == productId)
+                return product.getName();
+        }
+        return "";
+    }
+
+    public double printProductPrice(int productId) {
+        for (Product product : products) {
+            if (product.getId() == productId)
+                return product.getPrice();
+        }
+        return -1;
+    }
+
+    public void printCatalogue() {
+        String leftAlignFormat = "| %-3d | %-8s | %-9.2f|%n";
+
+        System.out.format("+-----+----------+----------+%n");
+        System.out.format("| ID  | Name     | Price    |%n");
+        System.out.format("+-----+----------+----------+%n");
+
+        for (Product product : products) {
+            System.out.format(leftAlignFormat, product.getId(), product.getName(), product.getPrice());
+        }
+
+        System.out.format("+-----+----------+----------+%n");
+        System.out.println();
+    }
+
+    public static Shop searchId(int shopId) {
+        for (Shop shop : shops) {
+            if (shop.getId() == shopId)
+                return shop;
+        }
+        return null;
+    }
+
     public static void printAllShops() {
         String leftAlignFormat = "| %-3d | %-8s | %-10s | %-11s |%n";
 
