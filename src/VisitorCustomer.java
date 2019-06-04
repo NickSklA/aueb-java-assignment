@@ -18,7 +18,7 @@ public class VisitorCustomer extends Customer {
 
             // print the menu
             System.out.println("===== Visitor Menu =====");
-            System.out.println("1. Show available shops");
+            System.out.println("1. Available shops");
 
             String option = "";
             while (true) {

@@ -91,9 +91,9 @@ public class RegisteredCustomer extends Customer {
 
             // print the menu
             System.out.println("===== Registered Menu =====");
-            System.out.println("1. Coming soon");
-            System.out.println("2. Show available shops");
-            System.out.println("3. Coming soon \n");
+            System.out.println("1. My orders");
+            System.out.println("2. Available shops");
+            System.out.println("3. Catalogue - New Order \n");
 
             String option = "";
             while (true) {
@@ -113,6 +113,7 @@ public class RegisteredCustomer extends Customer {
                     showAvailableShops();
                     break;
                 case "3":
+                    showCatalogue();
             }
         }
     }
@@ -139,5 +140,48 @@ public class RegisteredCustomer extends Customer {
                 break;
             }
         }
+    }
+
+    private void showCatalogue() {
+
+        // create a scanner object
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println();
+            System.out.print("Shop id: ");
+
+            // read shop id
+            String shopId = scanner.nextLine();
+            while (shopId != null) {
+                // read enter key
+                if (shopId.isEmpty()) {
+                    return;
+                }
+                else {
+                    // given shop id
+                    // search for shop id
+                    Shop requestedShop = Shop.searchId(Integer.parseInt(shopId));
+
+                    // if shop exists
+                    if (requestedShop != null) {
+                        System.out.print("===== Catalogue =====\n");
+                        requestedShop.printCatalogue();
+                        makeOrder(requestedShop);
+                    }
+                    else {
+                        System.out.print("The shop id " + shopId + " does not exist!\n");
+                        System.out.print("Enter new id or press enter key to return.\n");
+                    }
+
+                    // exit loop
+                    break;
+                }
+            }
+        }
+    }
+
+    private void makeOrder(Shop requestedShop) {
+
     }
 }
