@@ -97,6 +97,8 @@ public class Shop {
     }
 
     public void printCatalogue() {
+        System.out.print("===== Catalogue =====\n");
+
         String leftAlignFormat = "| %-3d | %-8s | %-9.2f|%n";
 
         System.out.format("+-----+----------+----------+%n");

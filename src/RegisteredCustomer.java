@@ -165,9 +165,13 @@ public class RegisteredCustomer extends Customer {
 
                     // if shop exists
                     if (requestedShop != null) {
-                        System.out.print("===== Catalogue =====\n");
                         requestedShop.printCatalogue();
-                        makeOrder(requestedShop);
+                        ArrayList<Integer[][]> idsQuantities = makeOrder(requestedShop);
+
+                        System.out.println("===== My cart =====");
+                        for (Integer[][] idQuantity : idsQuantities) {
+                            System.out.println("Product: " + idQuantity[0][0] + "Quantity: " + idQuantity[0][1]);
+                        }
                     }
                     else {
                         System.out.print("The shop id " + shopId + " does not exist!\n");
@@ -181,7 +185,75 @@ public class RegisteredCustomer extends Customer {
         }
     }
 
-    private void makeOrder(Shop requestedShop) {
+    private ArrayList<Integer[][]> makeOrder(Shop requestedShop) {
 
+
+
+        // store products & quantities
+        ArrayList<Integer[][]> idsQuantities = new ArrayList<>();
+
+        // read products & quantities
+        while (true) {
+            System.out.println();
+            System.out.print("Product id: ");
+
+            // create a scanner object
+            Scanner scanner = new Scanner(System.in);
+
+            // read product id
+            String productId = scanner.nextLine();
+
+            // when input is enter key, exit
+            while (productId != null) {
+
+                // read enter key
+                if (productId.isEmpty()) {
+                    return idsQuantities;
+                }
+                else {
+                    // given product id
+                    try {
+                        // try parse to Integer
+                        int productIndex = Integer.parseInt(productId);
+
+                        // valid product id
+                        if (requestedShop.getProducts().size() >= productIndex) {
+
+                            // loop until user give valid quantity
+                            while (true) {
+                                // read quantity
+                                System.out.print("Quantity: ");
+                                int quantity = scanner.nextInt();
+
+                                // valid quantity
+                                if (quantity >=1 && quantity <=20) {
+
+                                    // create array to store the product-quantity
+                                    Integer[][] idQuantity = {{productIndex, quantity}};
+
+                                    // add it to the list
+                                    idsQuantities.add(idQuantity);
+
+                                    // exit loop
+                                    break;
+                                }
+                                else {
+                                    // wrong quantity input
+                                    System.out.println("Please enter quantity value [1-20]\n");
+                                }
+                            }
+                        }
+                        else {
+                            // product id does not exist
+                            System.out.println("Product with id [" + productIndex + "] does not exist!\n");
+                        }
+                    }
+                    catch (Exception e) {
+                        System.out.println("Wrong input! Try again.\n");
+                    }
+                    break;
+                }
+            }
+        }
     }
 }
