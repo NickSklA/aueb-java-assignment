@@ -5,31 +5,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // load all objects
-        // to start the program
-//        loadObjects();
-
-//        RegisteredCustomer customer1 = new RegisteredCustomer("nik1@gmail.com", "123", "nik", "skl", "6942277574", "leva");
-//        System.out.println(customer1.getId());
-//
-//        RegisteredCustomer customer2 = new RegisteredCustomer("nids2@gmail.com", "121243", "nisdfk", "skl","694227sdf7574", "leva");
-//        System.out.println(customer2.getId());
-//
-//        RegisteredCustomer customer3 = new RegisteredCustomer("nids3@gmail.com", "121243", "nisdfk", "skl","694227sdf7574", "leva");
-//        System.out.println(customer3.getId());
-
-        Product product = new Product("Bread", 1);
-        Product product2 = new Product("Pizza", 5);
-        Product product3 = new Product("Fries", 3);
-
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(product);
-        products.add(product2);
-        products.add(product3);
-
-        Shop shop1 = new Shop("Name1", "Levade 38", "6942277574", products);
-        Shop shop2 = new Shop("Name2", "Kakou 4", "2323556345", new ArrayList<Product>());
-        Shop shop3 = new Shop("Name3", "Petroup 29", "234677867", new ArrayList<Product>());
+        // load fake data
+        loadObjects();
 
         // print connection menu
         printMenu();
@@ -151,26 +128,44 @@ public class Main {
     }
 
     static void loadObjects() {
-        Product product = new Product("Fish", 2.3);
-        Product product2 = new Product("Fish2", 2.3);
-        Product product3 = new Product("Fish3", 2.3);
 
+        // add some customers for testing
+        RegisteredCustomer customer1 = new RegisteredCustomer("maria.hudson@example.com", "Hudson95@!", "Maria", "Hudson", "(308) 911 9115", "United States");
+        RegisteredCustomer customer2 = new RegisteredCustomer("sara_hicks@example.com", "Hicks95^*", "Sara", "Hicks","(753) 777 4899", "Greece");
+        RegisteredCustomer customer3 = new RegisteredCustomer("jerry89@example.com", "Andrews89{{", "Jerry", "Andrews","(409) 538 6916", "France");
+
+        // add some products
+        Product product = new Product("Bread", 1);
+        Product product2 = new Product("Pizza", 5);
+        Product product3 = new Product("Fries", 3);
+        Product product4 = new Product("Water", 0.5);
+        Product product5 = new Product("Nuggets", 6);
+        Product product6 = new Product("Burger", 7.5);
+
+        // product list
         ArrayList<Product> products = new ArrayList<>();
         products.add(product);
         products.add(product2);
         products.add(product3);
-//
-//        Shop shop = new Shop(1, "Name", "Address", products);
-//        Shop shop2 = new Shop(2, "Name2", "Address2", products);
+        products.add(product4);
 
+        // product list
+        ArrayList<Product> products2 = new ArrayList<>();
+        products2.add(product);
+        products2.add(product5);
+        products2.add(product6);
+        products2.add(product4);
 
-        Shop.printAllShops();
-//
-//        Customer customer = new RegisteredCustomer("@gmail.com", "1234", "name", "6942277574", "glyfada");
-//        Customer customer2 = new RegisteredCustomer("@gmail.com", "1234", "name", "6942277574", "glyfada");
+        // product list
+        ArrayList<Product> products3 = new ArrayList<>();
+        products3.add(product);
+        products3.add(product3);
+        products3.add(product5);
+        products3.add(product4);
 
-
-        System.out.println();
-
+        // add some food shops
+        Shop shop1 = new Shop("NFood", "Athens", "(308) 911 9115", products);
+        Shop shop2 = new Shop("Meal.ly", "Piraeus", "(753) 777 4899", products2);
+        Shop shop3 = new Shop("Tastia", "Loutraki", "(409) 538 6916", products3);
     }
 }

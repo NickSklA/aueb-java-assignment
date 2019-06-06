@@ -122,26 +122,26 @@ public class Shop {
     }
 
     public static void printAllShops() {
-        String leftAlignFormat = "| %-3d | %-8s | %-10s | %-11s |%n";
+        String leftAlignFormat = "| %-3d | %-8s | %-10s | %-15s |%n";
 
-        System.out.format("+-----+----------+------------+-------------+%n");
-        System.out.format("| ID  | Name     | Address    | Phone No.   |%n");
-        System.out.format("+-----+----------+------------+-------------+%n");
+        System.out.format("+-----+----------+------------+-----------------+%n");
+        System.out.format("| ID  | Name     | Address    | Phone No.       |%n");
+        System.out.format("+-----+----------+------------+-----------------+%n");
 
         for (Shop shop : shops) {
             System.out.format(leftAlignFormat, shop.getId(), shop.getName(), shop.getAddress(), shop.getPhoneNumber());
         }
 
-        System.out.format("+-----+----------+------------+-------------+%n");
+        System.out.format("+-----+----------+------------+-----------------+%n");
         System.out.println();
     }
 
     public static void filterAndPrintShops(String shopName) {
-        String leftAlignFormat = "| %-3d | %-8s | %-10s | %-11s |%n";
+        String leftAlignFormat = "| %-3d | %-8s | %-10s | %-15s |%n";
 
-        System.out.format("+-----+----------+------------+-------------+%n");
-        System.out.format("| ID  | Name     | Address    | Phone No.   |%n");
-        System.out.format("+-----+----------+------------+-------------+%n");
+        System.out.format("+-----+----------+------------+-----------------+%n");
+        System.out.format("| ID  | Name     | Address    | Phone No.       |%n");
+        System.out.format("+-----+----------+------------+-----------------+%n");
 
         for (Shop shop : shops) {
             if (shop.getName().toLowerCase().contains(shopName.toLowerCase())) {
@@ -149,7 +149,7 @@ public class Shop {
             }
         }
 
-        System.out.format("+-----+----------+------------+-------------+%n");
+        System.out.format("+-----+----------+------------+-----------------+%n");
         System.out.println();
     }
 }

@@ -77,6 +77,14 @@ public class Order {
         System.out.format("| No. | Datetime             | Shop Name  | Total Cost   |%n");
         System.out.format("+-----+----------------------+------------+--------------+%n");
 
+        // if there are no orders print message
+        if (orders.isEmpty()) {
+            String centerAlignFormat = "|%-22s %-18s %-14s|%n";
+            System.out.format(centerAlignFormat, "", "No orders yet", "");
+            System.out.format("+-----+----------------------+------------+--------------+%n");
+            return;
+        }
+
         int i = 0;
         for (Order order : orders) {
             if (order.getCustomer().equals(customer)) {
