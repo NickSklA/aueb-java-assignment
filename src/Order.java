@@ -69,9 +69,48 @@ public class Order {
                 products;
     }
 
-    public static void printOrder() {
+    public static void printOrder(Customer customer) {
+
+        String leftAlignFormat = "| %-3d | %-20s | %-10s | %-13s|%n";
+
+        System.out.format("+-----+----------------------+------------+--------------+%n");
+        System.out.format("| No. | Datetime             | Shop Name  | Total Cost   |%n");
+        System.out.format("+-----+----------------------+------------+--------------+%n");
+
+        int i = 0;
         for (Order order : orders) {
-            order.toString();
+            if (order.getCustomer().equals(customer)) {
+
+                // print it
+                System.out.format(leftAlignFormat, ++i, order.datetime, order.shop.getName(), order.calculateTotalCost());
+            }
         }
+        System.out.format("+-----+----------------------+------------+--------------+%n");
+    }
+
+    private String calculateTotalCost() {
+
+        // total cost
+        double totalCost = 0;
+
+        for (Integer[][] idQuantity : idsQuantities) {
+
+            // get product
+            Product product = shop.getProducts().get(idQuantity[0][0]-1);
+
+            // get product quantity
+            int quantity = idQuantity[0][1];
+
+            // get product price
+            double price = product.getPrice();
+
+            // calculate cost
+            double cost = price * quantity;
+
+            // add to total cost
+            totalCost += cost;
+        }
+
+        return totalCost + "$";
     }
 }

@@ -111,6 +111,7 @@ public class RegisteredCustomer extends Customer {
 
             switch (option) {
                 case "1":
+                    showOrders();
                     break;
                 case "2":
                     showAvailableShops();
@@ -119,6 +120,11 @@ public class RegisteredCustomer extends Customer {
                     showCatalogue();
             }
         }
+    }
+
+    private void showOrders() {
+        System.out.println("===== My Orders =====");
+        Order.printOrder(this);
     }
 
     private void showAvailableShops() {
