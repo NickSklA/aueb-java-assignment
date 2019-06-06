@@ -18,10 +18,9 @@ public class Main {
 //        RegisteredCustomer customer3 = new RegisteredCustomer("nids3@gmail.com", "121243", "nisdfk", "skl","694227sdf7574", "leva");
 //        System.out.println(customer3.getId());
 
-        Product product = new Product("Fish", 2.3);
-        Product product2 = new Product("Fish2", 2.3);
-        Product product3 = new Product("Fish3", 2.3);
-        Product product4 = new Product("Fish3", 2.3);
+        Product product = new Product("Bread", 1);
+        Product product2 = new Product("Pizza", 5);
+        Product product3 = new Product("Fries", 3);
 
         ArrayList<Product> products = new ArrayList<>();
         products.add(product);

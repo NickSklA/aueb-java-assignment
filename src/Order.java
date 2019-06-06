@@ -6,7 +6,7 @@ public class Order {
     private Shop shop;
     private ArrayList<Integer[][]> idsQuantities;
     private String datetime;
-    private static ArrayList<Order> orders;
+    private static ArrayList<Order> orders = new ArrayList<>();
 
     public Order(Customer customer, Shop shop, ArrayList<Integer[][]> idsQuantities, String datetime) {
         this.customer = customer;
@@ -51,12 +51,22 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "customer=" + customer +
-                ", shop=" + shop +
-                ", idsQuantities=" + idsQuantities +
-                ", datetime='" + datetime + '\'' +
-                '}';
+
+        String shopName = shop.getName();
+        String customerName = customer.getFirstName() + " " + customer.getLastName();
+        String products = "";
+
+        for (Integer[][] idQuantity : idsQuantities) {
+            String productName = shop.getProducts().get(idQuantity[0][0]-1).getName();
+            String quantity = "x" + idQuantity[0][1];
+            products += productName + ":    " + quantity + "\n";
+        }
+
+        return "Shop Name: " + shopName + "\n" +
+                "Customer:  " + customerName + "\n" +
+                "Datetime:  " + datetime + "\n" +
+                "----- Products -----" + "\n" +
+                products;
     }
 
     public static void printOrder() {

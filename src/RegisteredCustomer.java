@@ -1,4 +1,7 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class RegisteredCustomer extends Customer {
@@ -159,35 +162,129 @@ public class RegisteredCustomer extends Customer {
                     return;
                 }
                 else {
-                    // given shop id
-                    // search for shop id
-                    Shop requestedShop = Shop.searchId(Integer.parseInt(shopId));
 
-                    // if shop exists
-                    if (requestedShop != null) {
-                        requestedShop.printCatalogue();
-                        ArrayList<Integer[][]> idsQuantities = makeOrder(requestedShop);
+                    try {
+                        // given shop id
+                        // search for shop id
+                        Shop requestedShop = Shop.searchId(Integer.parseInt(shopId));
 
-                        System.out.println("===== My cart =====");
-                        for (Integer[][] idQuantity : idsQuantities) {
-                            System.out.println("Product: " + idQuantity[0][0] + "Quantity: " + idQuantity[0][1]);
+                        // if shop exists
+                        if (requestedShop != null) {
+                            requestedShop.printCatalogue();
+                            ArrayList<Integer[][]> idsQuantities = makeOrder(requestedShop);
+                            checkout(requestedShop, idsQuantities);
+                            return;
                         }
-                    }
-                    else {
-                        System.out.print("The shop id " + shopId + " does not exist!\n");
-                        System.out.print("Enter new id or press enter key to return.\n");
-                    }
+                        else {
+                            System.out.print("The shop id " + shopId + " does not exist!\n");
+                            System.out.print("Enter new id or press enter key to return.\n");
+                        }
 
-                    // exit loop
-                    break;
+                        // exit loop
+                        break;
+                    }
+                    catch (Exception e) {
+                        System.out.println("Wrong input! Try again.");
+                        break;
+                    }
                 }
             }
         }
     }
 
+    private void checkout(Shop requestedShop, ArrayList<Integer[][]> idsQuantities) {
+        System.out.println();
+        System.out.println("===== Checkout =====");
+        System.out.println("Shop: " + requestedShop.getName());
+
+        String leftAlignFormat = "| %-8s | %-8s | %-9.2f|%n";
+
+        System.out.format("+----------+----------+----------+%n");
+        System.out.format("| Product  | Quantity | Cost     |%n");
+        System.out.format("+----------+----------+----------+%n");
+
+        // total cost
+        double totalCost = 0;
+
+        for (Integer[][] idQuantity : idsQuantities) {
+
+            // get product
+            Product product = requestedShop.getProducts().get(idQuantity[0][0]-1);
+
+            // get product name from id
+            String productName = product.getName();
+
+            // get product quantity
+            int quantity = idQuantity[0][1];
+
+            // get product price
+            double price = product.getPrice();
+
+            // calculate cost
+            double cost = price * quantity;
+
+            // add to total cost
+            totalCost += cost;
+
+            // print it
+            System.out.format(leftAlignFormat, productName, "x" + quantity, cost);
+        }
+
+        // format for total cost
+        String alignFormat = "| %-8s  %-8s  %-9.2f|%n";
+
+        System.out.format("+----------+----------+----------+%n");
+        System.out.format(alignFormat, "Total Cost", "", totalCost);
+        System.out.format("+--------------------------------+%n");
+        System.out.println();
+
+        while (true) {
+            // create a scanner object
+            Scanner scanner = new Scanner(System.in);
+
+            // submit order
+            System.out.print("Submit order for " + totalCost + " $ [Y/N]:");
+            String answer = scanner.nextLine();
+
+            if (answer.toUpperCase().equals("Y")) {
+
+                // get datetime
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                String datetime = dateFormat.format(date);
+
+                // add order
+                Order order = new Order(this, requestedShop, idsQuantities, datetime);
+
+                // print order receipt
+                System.out.println("\n===== Receipt =====");
+                System.out.println(order.toString());
+                System.out.println();
+
+                // press enter key to continue
+                System.out.print("Press enter to return to the menu.");
+                String enterKey = scanner.nextLine();
+                while (enterKey != null) {
+                    if (enterKey.isEmpty()) {
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                }
+
+                // exit loop
+                return;
+            }
+            else if (answer.toUpperCase().equals("N")){
+                // return to menu
+                // exit loop
+                return;
+            }
+        }
+    }
+
     private ArrayList<Integer[][]> makeOrder(Shop requestedShop) {
-
-
 
         // store products & quantities
         ArrayList<Integer[][]> idsQuantities = new ArrayList<>();
