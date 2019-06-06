@@ -259,7 +259,6 @@ public class RegisteredCustomer extends Customer {
                 // print order receipt
                 System.out.println("\n===== Receipt =====");
                 System.out.println(order.toString());
-                System.out.println();
 
                 // press enter key to continue
                 System.out.print("Press enter to return to the menu.");
